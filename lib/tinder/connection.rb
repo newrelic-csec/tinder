@@ -74,12 +74,12 @@ module Tinder
 
     def get(url, *args)
       response = connection.get(url, *args)
-      response.body
+      response.body || {}
     end
 
     def post(url, body = nil, *args)
       response = connection.post(url, body, *args)
-      response.body
+      response.body || {}
     end
 
     def raw_post(url, body = nil, *args)
@@ -88,7 +88,7 @@ module Tinder
 
     def put(url, body = nil, *args)
       response = connection.put(url, body, *args)
-      response.body
+      response.body || {}
     end
 
     # Is the connection to campfire using ssl?

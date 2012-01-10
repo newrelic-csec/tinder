@@ -31,7 +31,7 @@ module Tinder
     # Get an array of all the available rooms
     # TODO: detect rooms that are full (no link)
     def rooms
-      connection.get('/rooms.json')['rooms'].map do |room|
+      (connection.get('/rooms.json')['rooms'] || []).map do |room|
         Room.new(connection, room)
       end
     end

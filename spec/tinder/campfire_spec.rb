@@ -25,6 +25,18 @@ describe Tinder::Campfire do
     end
   end
 
+  describe "rooms when unauthorized" do
+    before do
+      stub_connection(@campfire.connection) do |stub|
+        stub.get('/rooms.json') {[403, {}, '']}
+      end
+    end
+
+    it "should return an empty list" do
+      @campfire.rooms.size.should be == 0
+    end
+  end
+
   describe "find_by_id" do
     before do
       stub_connection(@campfire.connection) do |stub|
